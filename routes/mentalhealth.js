@@ -139,9 +139,35 @@ function extractMoodKeywords(history) {
 }
 
 // Simple test endpoint to verify route connectivity
-// Simple test endpoint to verify route connectivity
 router.post('/test-chat', (req, res) => {
     res.json({ message: 'Test chat endpoint is working!' });
+});
+
+// Stress management messages endpoint
+router.get('/stress-messages', (req, res) => {
+  const stressMessages = [
+    "Take a deep breath. Inhale for 4 counts, hold for 4, exhale for 6. You've got this.",
+    "Stress is temporary. This difficult moment will pass, and you will be stronger for it.",
+    "Remember: You don't have to be perfect. Progress is more important than perfection.",
+    "Take a 5-minute break. Step away, stretch, or look out the window. Your mind needs rest.",
+    "One thing at a time. Focus on what you can control right now, not everything at once.",
+    "It's okay to ask for help. Reaching out is a sign of strength, not weakness.",
+    "Your feelings are valid. It's normal to feel overwhelmed sometimes.",
+    "Try the 5-4-3-2-1 technique: Name 5 things you see, 4 you hear, 3 you touch, 2 you smell, 1 you taste.",
+    "You've overcome challenges before. Trust in your ability to handle this too.",
+    "Self-care isn't selfish. Taking care of yourself helps you take care of everything else.",
+    "Break big tasks into smaller steps. Small progress is still progress.",
+    "Remember to hydrate and nourish your body. Physical care supports mental wellbeing."
+  ];
+
+  const randomMessage = stressMessages[Math.floor(Math.random() * stressMessages.length)];
+  
+  res.json({
+    success: true,
+    message: randomMessage,
+    type: 'stress_relief',
+    timestamp: new Date().toISOString()
+  });
 });
 
 // Streaming endpoint for faster perceived performance
